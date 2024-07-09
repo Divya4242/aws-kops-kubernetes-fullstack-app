@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: aws-ebs-gp2
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  # Set the desired size of the EBS volume (in GiB)
+#  volumeSize: "9"
+  fsType: ext4 # (defaults to ext4)

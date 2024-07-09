@@ -17,3 +17,7 @@ spec:
       containers:
       - name: node-backend
         image: divyapatel42/ecommerce-webapp:backendv1
+        env:
+        - name: DATABASE
+          value: "mongodb://root:example@mongodb-0.mongodb.default.svc.cluster.local:27017/Ecommerce?authSource=admin"
+

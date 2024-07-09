@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: ingress-nginx
+#  annotations:
+ #   kubernetes.io/ingress.class: ingress-nginx
 spec:
   ingressClassName: nginx
   rules:
