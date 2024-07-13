@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ff429e93-b54d-4237-857a-683d1089e068)# Full-stack application deployed on Kubernetes using kops on AWS
+# Full-stack application deployed on Kubernetes using kops on AWS
 
 This guide provides a step-by-step process to create a Kubernetes cluster on AWS using Kops. 
 This project demonstrates a Kubernetes setup with a full-stack application consisting of a ReactJS frontend, NodeJS backend, and MongoDB database. The project also includes a robust monitoring system using Prometheus, Grafana, kube-state-metrics, and Alert Manager.
@@ -101,20 +101,20 @@ Here is the example of expected above command output:
 
 Once the cluster is ready, follow these steps to deploy the application:
 
-   Clone the repository using the following command:
-    ```sh
-    git clone https://github.com/Divya4242/k8s-aws-kops-ingress.git
-    ```
+* Clone the repository using the following command:
+  ```sh
+  git clone https://github.com/Divya4242/k8s-aws-kops-ingress.git
+  ```
 
-   Apply the application deployment, service and statefulset configuration:
-    ```sh
-    kubectl apply -f .
-    ```
+* Apply the application deployment, service and statefulset configuration:
+  ```sh
+  kubectl apply -f .
+  ```
 
-   Apply the ingress controller and resource configuration:
-    ```sh
-    cd ingress && kubectl apply -f .
-    ```
+* Apply the ingress controller and resource configuration:
+  ```sh
+  cd ingress && kubectl apply -f .
+  ```
 
 below is the snapshot of expected above commands output:
 ![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/c6f35918-1535-4b2d-aad0-f69febe937dd)
@@ -128,7 +128,7 @@ To check deployment status of the application, open browser and navigate to the 
 
 Until this, we've successfully configured a Kops cluster, deployed Kubernetes resources, and established Kubernetes services. 
 
-**Add NGINX Ingress Controller**
+**Add NGINX Ingress Controller:**
 
 To expose your services using NGINX Ingress Controller, follow these steps:
 
@@ -150,8 +150,7 @@ To expose your services using NGINX Ingress Controller, follow these steps:
     ```sh
     kubectl get ns
     ```
-
-You should see a namespace named `ingress-nginx`.
+You should see a namespace named `ingress-nginx` as output.
 
 > [!TIP]
 > The **NGINX Ingress Controller** is the runtime component that actively manages traffic, while the **NGINX Ingress Resource File** is a configuration artifact that defines the desired behavior for that traffic within the Kubernetes ecosystem. (same like we deploy nginx web server(nginx ingress controller) for serving content to user and reverse proxy and deployment.conf(nginx ingress resource file) in sites availiable that define the servername, listning port, etc.)
@@ -162,12 +161,11 @@ To find the DNS name of the Load Balancer:
   ```sh
   kubectl get svc -n ingress-nginx
   ```
-
-* Alternatively, you can find the Load Balancer DNS name in the AWS Management Console under EC2 -> Load Balancers.
-
 ![image](https://github.com/Divya4242/Kops-Kubernetes/assets/113757574/466978b1-5e99-488d-bf6f-35ee0468eafb)
 
-### 14. Configure DNS in Route 53
+* Alternatively, you can also find the Load Balancer DNS name in the AWS Management Console under EC2 -> Load Balancers.
+
+**Configure DNS in Route 53:**
 Add a CNAME record in Route 53 to point to the Load Balancer DNS name:
 
 1. Go to Route 53 and select your hosted zone.
