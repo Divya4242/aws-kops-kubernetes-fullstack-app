@@ -1,4 +1,4 @@
-# Kubernetes Cluster Setup with Kops on AWS
+# Full-stack application deployed on Kubernetes using kops on AWS
 
 This guide provides a step-by-step process to create a Kubernetes cluster on AWS using Kops. 
 This project demonstrates a Kubernetes setup with a full-stack application consisting of a ReactJS frontend, NodeJS backend, and MongoDB database. The project also includes a robust monitoring system using Prometheus, Grafana, kube-state-metrics, and Alert Manager.
@@ -12,7 +12,6 @@ This project demonstrates a Kubernetes setup with a full-stack application consi
 - **Database**: MongoDB (StatefulSet for data persistence and Service)
 - **Volumes**: 
   - PVC for MongoDB (AWS EBS gp2)
-  - PVC for Grafana (AWS EBS gp2)
 - **Monitoring**: 
   - Prometheus
   - Grafana
@@ -27,6 +26,7 @@ This project demonstrates a Kubernetes setup with a full-stack application consi
 - Basic knowledge of AWS and Kubernetes
 - AWS CLI configured with appropriate permissions
 - Domain managed in Route 53
+- Prometheus and Grafana
 
 ## Steps
 
@@ -242,11 +242,11 @@ To check Montoring of the application, open Chrome and navigate to the following
 ![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/ac3575b8-58ca-496e-a57e-0c5432890a43)
 
 
-### 17. Destroy a Kops Cluster
+## Cleaning Up
 To completely remove a Kops-managed Kubernetes cluster, execute the following command:
-    ```sh
-    kops delete cluster k8s-cluster.example.com --state=s3://<your-s3-bucket> --yes
-    ```
+```sh
+kops delete cluster k8s-cluster.example.com --state=s3://<your-s3-bucket> --yes
+```
 
 ## Conclusion
 
