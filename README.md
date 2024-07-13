@@ -1,4 +1,4 @@
-# Full-stack application deployed on Kubernetes using kops on AWS
+![image](https://github.com/user-attachments/assets/ff429e93-b54d-4237-857a-683d1089e068)# Full-stack application deployed on Kubernetes using kops on AWS
 
 This guide provides a step-by-step process to create a Kubernetes cluster on AWS using Kops. 
 This project demonstrates a Kubernetes setup with a full-stack application consisting of a ReactJS frontend, NodeJS backend, and MongoDB database. The project also includes a robust monitoring system using Prometheus, Grafana, kube-state-metrics, and Alert Manager.
@@ -28,44 +28,43 @@ This project demonstrates a Kubernetes setup with a full-stack application consi
 - Domain managed in Route 53
 - Prometheus and Grafana
 
-## Steps
+## Getting Started
 
-### 1. Launch an EC2 Instance
+## Infrastructure Creation
+**1. Launch an EC2 Instance**
 
-Launch an EC2 instance with the `t2.micro` instance type. You can either create a new instance or use an existing one. Ensure you have SSH access to the instance.
+  Launch an EC2 instance with the `t2.micro` instance type. You can either create a new instance or use an existing one. Ensure you have SSH access to the instance.
 
-### 2. Install Kops
+**2. Install Kops**
 
-SSH into your EC2 and install Kops. Follow the installation instructions from the official Kops documentation [here](https://kops.sigs.k8s.io/getting_started/install/).
+  SSH into your EC2 and install Kops. Follow the installation instructions from the official Kops documentation [here](https://kops.sigs.k8s.io/getting_started/install/).
 
-### 3. Update the System
+**3. Update the System**
 
 Update the system packages.
-
 ```sh
 sudo apt update -y
 ```
 
-### 4. Create IAM Role and Attach it to EC2
+**4. Create IAM Role and Attach it to EC2**
 
 Create an IAM role with necessary permissions and programmatic access. Attaching **AdministratorAccess** is recommended for simplicity. Attach the IAM role to your EC2 instance.
 
-### 5. Create an S3 Bucket
+**5. Create an S3 Bucket**
 
 Create an S3 bucket which will be used by Kops to store cluster state information.
 
-### 6. Create a Hosted Zone in Route53
+**6. Create a Hosted Zone in Route53**
 
 Create a hosted zone in Route53. If you already have a hosted zone, you can skip this step.
 
-### 7. Install kubectl
+**7. Install kubectl**
 
 Install kubectl by following the instructions [here](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
 
-### 8. Create the Cluster
+**8. Create the Cluster**
 
 Run the following command to create your cluster. Update the placeholders with your specific values. Also change the clsuter name that end with your hosted zone name. Example. kubernetes.myhosteszone.com, kubernetes.mydomain.com, etc... 
-
 ```sh
 kops create cluster \
     --name=k8s-cluster.example.com \
@@ -78,7 +77,7 @@ kops create cluster \
     --dns-zone=<your-domain>
 ```
 
-### 9. Update and Apply the Cluster Configuration
+**9. Update and Apply the Cluster Configuration**
 
 The previous command generates a preview of all the resources Kops will create. If the preview looks good, run the following command to create the resources. (Same like terraform plan(8th step) and terraform apply(9th step))
 
@@ -87,7 +86,7 @@ kops update cluster --name=k8s-cluster.example.com--yes --admin --state=s3://<yo
 ```
 This process may take 5-10 minutes.
 
-### 10. Validate the Cluster
+**10. Validate the Cluster**
 
 Validate that the cluster is ready.
 
@@ -98,43 +97,38 @@ kops validate cluster --name=k8s-cluster.example.com --state=s3://<your-s3-bucke
 Here is the example of expected above command output:
 ![image](https://github.com/Divya4242/Kops-Kubernetes/assets/113757574/adc2d923-f7f0-44f2-a916-7f44a41bedad)
 
-### 11. Deploy Your Application
+## Application Deployment
 
-Once the cluster is ready, follow these steps to deploy your application:
+Once the cluster is ready, follow these steps to deploy the application:
 
-1. Clone the repository using the following command:
+   Clone the repository using the following command:
     ```sh
     git clone https://github.com/Divya4242/k8s-aws-kops-ingress.git
     ```
 
-2. Change directory to the cloned repository:
-    ```sh
-    cd k8s-aws-kops-ingress
-    ```
-
-3. Apply the application deployment, service and statefulset configuration:
+   Apply the application deployment, service and statefulset configuration:
     ```sh
     kubectl apply -f .
     ```
 
-4. Apply the ingress controller and resource configuration:
+   Apply the ingress controller and resource configuration:
     ```sh
     cd ingress && kubectl apply -f .
     ```
 
-Here is the example of expected above commands output:
+below is the snapshot of expected above commands output:
 ![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/c6f35918-1535-4b2d-aad0-f69febe937dd)
 
 
-To check deployment status of the application, open Chrome and navigate to the following URLs:
+To check deployment status of the application, open browser and navigate to the following URLs:
 
     • <ec2-public-ip>:30006 # for the frontend
     • <ec2-public-ip>:30007 # for the backend
 ###
 
-Until the 11th step, we've successfully configured a Kops cluster, deployed Kubernetes resources, and established Kubernetes services.
+Until this, we've successfully configured a Kops cluster, deployed Kubernetes resources, and established Kubernetes services. 
 
-### 12. Add NGINX Ingress Controller
+**Add NGINX Ingress Controller**
 
 To expose your services using NGINX Ingress Controller, follow these steps:
 
@@ -149,7 +143,7 @@ To expose your services using NGINX Ingress Controller, follow these steps:
 
 3. Deploy the NGINX Ingress Controller and NGINX INGRESS Resource:
     ```sh
-    kubectl apply -f .
+    cd ingress && kubectl apply -f .
     ```
 
 4. Verify that the Ingress Controller is deployed successfully by checking the Kubernetes namespace:
@@ -162,15 +156,14 @@ You should see a namespace named `ingress-nginx`.
 > [!TIP]
 > The **NGINX Ingress Controller** is the runtime component that actively manages traffic, while the **NGINX Ingress Resource File** is a configuration artifact that defines the desired behavior for that traffic within the Kubernetes ecosystem. (same like we deploy nginx web server(nginx ingress controller) for serving content to user and reverse proxy and deployment.conf(nginx ingress resource file) in sites availiable that define the servername, listning port, etc.)
    
-### 13. Obtain Load Balancer DNS
+**Obtain Load Balancer DNS**
 To find the DNS name of the Load Balancer:
+* Run the following command and look for the EXTERNAL-IP of the ingress-nginx-controller service
+  ```sh
+  kubectl get svc -n ingress-nginx
+  ```
 
-• Run the following command and look for the EXTERNAL-IP of the ingress-nginx-controller service:   
-```sh
-kubectl get svc -n ingress-nginx
-```
-
- • Alternatively, you can find the Load Balancer DNS name in the AWS Management Console under EC2 -> Load Balancers.
+* Alternatively, you can find the Load Balancer DNS name in the AWS Management Console under EC2 -> Load Balancers.
 
 ![image](https://github.com/Divya4242/Kops-Kubernetes/assets/113757574/466978b1-5e99-488d-bf6f-35ee0468eafb)
 
@@ -202,7 +195,7 @@ Open your browser and navigate to your domain or the appropriate service URL. Yo
 
       2. Node has less than 1 GB memory
       
-### 15. Apply the monitoring deployment and service configuration:
+### 1. Apply the monitoring deployment and service configuration:
 ```sh
 cd monitoring && kubectl apply -f .
 ```
@@ -213,9 +206,8 @@ To check Montoring of the application, open Chrome and navigate to the following
     • <ec2-public-ip>:30013 # for the grafana
     • <ec2-public-ip>:30011 # for the kube-state-metrics
 
-### 16. Setup Grafana
+### 2. Setup Prometheus & Grafana
 ![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/9cbd9a78-d244-4dac-9d8a-e483bd78d54a)
-
 
 1. Ensure all targets in prometheus are up as shown in the image above.
 
@@ -227,11 +219,12 @@ To check Montoring of the application, open Chrome and navigate to the following
 
     • Click the "Save & Test" button at the bottom of grafana page.
 
-![image](https://github.com/Divya4242/PAGNCstack/assets/113757574/33ddecf2-b32b-4b45-834a-d6b7864c4595)
+![image](https://github.com/user-attachments/assets/23422a22-6eed-4e9e-b779-9bd28dfdc33a)
+
 
 3. Once the data source is successfully added, import the dashboard:
 
-    • Go to Dashboards -> Import -> Enter the ID 13332 into the Grafana dashboard ID field.
+    • Go to Dashboards -> Import -> Enter the ID 13332 into the Grafana dashboard ID field -> Click on load.
 
 ## Dashboard Photos
 
