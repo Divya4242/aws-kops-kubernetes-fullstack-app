@@ -236,11 +236,11 @@ To completely remove a Kops-managed Kubernetes cluster, execute the following co
 kops delete cluster k8s-cluster.example.com --state=s3://<your-s3-bucket> --yes
 ```
 
-## Conclusion
+## Conclusion 🏆
 
 By following these steps, you will have set up a Kubernetes cluster on AWS with Kops, deployed your application, and configured NGINX Ingress for external access via Route 53.
 
-## Important Kubernetes and Kops Commands
+## Important Kubernetes and Kops Commands 📝
 1. **Get CRI details used in nodes**: `kubectl get nodes -o wide`
 2. **List pods (controller, scheduler, api-server) running on control-plane**: `kubectl get pods -n kube-system`
 3. **List the nodes present in the cluster**: `kubectl get nodes`
@@ -253,7 +253,7 @@ By following these steps, you will have set up a Kubernetes cluster on AWS with 
 10. **Get the instance group list of Kubernetes Cluster**: `kops get ig --state=s3://<your-s3-bucket>`
 11. **Add/remove an instance in Kubernetes Cluster**: `kops edit ig <instance-name> --state=s3://<your-s3-bucket>`
 
-## Troubleshooting
+## Troubleshooting 🛠️
 If you encounter an error such as: 
 > [!NOTE]
 > error: You must be logged in to the server (the server has asked for the client to provide credentials)
