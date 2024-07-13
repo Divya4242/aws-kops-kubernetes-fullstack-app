@@ -186,7 +186,7 @@ Cheers! 🎉 You can now access your deployed website.
 
 Open your browser and navigate to your domain or the appropriate service URL. Your application should be live and accessible.
 
-## Kubernetes Monitoring
+## Kubernetes Monitoring 🔎 
 - **Prometheus**: Collects metrics from the Kubernetes cluster and applications.
 - **Grafana**: Visualizes the metrics collected by Prometheus.
 - **kube-state-metrics**: Exposes cluster-level metrics.
