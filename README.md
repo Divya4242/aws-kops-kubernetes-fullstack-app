@@ -94,8 +94,10 @@ Validate that the cluster is ready.
 kops validate cluster --name=k8s-cluster.example.com --state=s3://<your-s3-bucket>
 ```
 
-Here is the example of expected above command output:
-![image](https://github.com/Divya4242/Kops-Kubernetes/assets/113757574/adc2d923-f7f0-44f2-a916-7f44a41bedad)
+<img align="right" width="100" height="100" src="https://github.com/Divya4242/Kops-Kubernetes/assets/113757574/adc2d923-f7f0-44f2-a916-7f44a41bedad">
+
+Here is an example of the expected output for the command above. In the image, you'll find that both the control plane and node plane are ready and operational, each identified by its unique ID. Additionally, the image displays subnet details where EC2 instances have been deployed, providing comprehensive information about the network configuration and infrastructure setup.
+
 
 ## Application Deployment
 
@@ -116,14 +118,10 @@ Once the cluster is ready, follow these steps to deploy the application:
   cd ingress && kubectl apply -f .
   ```
 
-below is the snapshot of expected above commands output:
-![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/c6f35918-1535-4b2d-aad0-f69febe937dd)
+<img align="right" width="100" height="100" src="https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/c6f35918-1535-4b2d-aad0-f69febe937dd">
 
+Here is a snapshot depicting the expected output of the commands mentioned above. The image shows that all necessary pods, as specified in the deployment file, have been successfully created, along with the essential services. To verify the deployment status of the application, simply open your web browser and visit the following URLs: • `<ec2-public-ip>:30006` for accessing the frontend, and • `<ec2-public-ip>:30007` for connecting to the backend.
 
-To check deployment status of the application, open browser and navigate to the following URLs:
-
-    • <ec2-public-ip>:30006 # for the frontend
-    • <ec2-public-ip>:30007 # for the backend
 ###
 
 Until this, we've successfully configured a Kops cluster, deployed Kubernetes resources, and established Kubernetes services. 
@@ -193,7 +191,7 @@ Open your browser and navigate to your domain or the appropriate service URL. Yo
 
       2. Node has less than 1 GB memory
       
-### 1. Apply the monitoring deployment and service configuration:
+### 1. Apply the monitoring deployment and service configuration
 ```sh
 cd monitoring && kubectl apply -f .
 ```
@@ -218,7 +216,7 @@ To check Montoring of the application, open Chrome and navigate to the following
 
 * 3. Once you've successfully added the data source, proceed to Grafana's Dashboards section. Navigate to Import, where you'll enter Dashboard ID `13332` into the designated field. Click 'Load' to import the kube-state-metrics dashboard. This dashboard provides comprehensive visualizations of Kubernetes nodes, pods, deployments, and more, offering valuable insights into your cluster's performance and resource utilization.
      
-## Dashboard Photos
+### Dashboard Photos
 
 |Kubernetes Cluster|Kubernetes Nodes|
 |:-:|:-:|
