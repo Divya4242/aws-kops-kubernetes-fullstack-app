@@ -7,14 +7,14 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 2
+  replicas: 2   # Number of Frontend replicas
   selector:
     matchLabels:
-      app: node-backend
+      app: node-backend    # Label selector used by the deployment and service to manage Pods
   template:
     metadata:
       labels:
-        app: node-backend
+        app: node-backend   # Labels applied to the Pods created by the Deployments
     spec:
       containers:
       - name: node-backend
