@@ -1,3 +1,6 @@
+# This is the network policy for MongoDB to secure the MongoDB pod. I created an ingress policy that only allows incoming traffic from 
+# the backend pod to the MongoDB pod. This means that only the backend pod can communicate with the MongoDB pod, 
+# preventing any other pods from establishing a connection.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:

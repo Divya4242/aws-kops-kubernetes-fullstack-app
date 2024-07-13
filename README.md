@@ -3,6 +3,8 @@
 This guide provides a step-by-step process to create a Kubernetes cluster on AWS using Kops. 
 This project demonstrates a Kubernetes setup with a full-stack application consisting of a ReactJS frontend, NodeJS backend, and MongoDB database. The project also includes a robust monitoring system using Prometheus, Grafana, kube-state-metrics, and Alert Manager.
 
+![kops](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/abb76432-0b97-4f1a-8270-3428bcd4d7ed)
+
 ## Tech Stack
 
 - **Frontend**: ReactJS (Deployment and Service)
@@ -121,7 +123,8 @@ Once the cluster is ready, follow these steps to deploy your application:
     ```
 
 Here is the example of expected above commands output:
-![image](https://github.com/Divya4242/Kops-Kubernetes/assets/113757574/07098fdd-dcba-4a45-8595-03b8bff8a296)
+![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/c6f35918-1535-4b2d-aad0-f69febe937dd)
+
 
 To check deployment status of the application, open Chrome and navigate to the following URLs:
 
@@ -164,7 +167,7 @@ To find the DNS name of the Load Balancer:
 
 • Run the following command and look for the EXTERNAL-IP of the ingress-nginx-controller service:   
 ```sh
-    kubectl get svc -n ingress-nginx
+kubectl get svc -n ingress-nginx
 ```
 
  • Alternatively, you can find the Load Balancer DNS name in the AWS Management Console under EC2 -> Load Balancers.
@@ -200,9 +203,9 @@ Open your browser and navigate to your domain or the appropriate service URL. Yo
       2. Node has less than 1 GB memory
       
 ### 15. Apply the monitoring deployment and service configuration:
-    ```sh
-    cd monitoring && kubectl apply -f .
-    ```
+```sh
+cd monitoring && kubectl apply -f .
+```
 
 To check Montoring of the application, open Chrome and navigate to the following URLs:
 
@@ -241,37 +244,26 @@ To check Montoring of the application, open Chrome and navigate to the following
 
 ### 17. Destroy a Kops Cluster
 To completely remove a Kops-managed Kubernetes cluster, execute the following command:
-
-```sh
-kops delete cluster k8s-cluster.example.com --state=s3://<your-s3-bucket> --yes
-```
+    ```sh
+    kops delete cluster k8s-cluster.example.com --state=s3://<your-s3-bucket> --yes
+    ```
 
 ## Conclusion
 
 By following these steps, you will have set up a Kubernetes cluster on AWS with Kops, deployed your application, and configured NGINX Ingress for external access via Route 53.
 
 ## Important Kubernetes and Kops Commands
-  1. **Get CRI details used in nodes**: kubectl get nodes -o wide
-  2. **List pods (controller, scheduler, api-server) running on control-plane**: kubectl get pods -n kube-system
-  3. **Get details of control-plane node**:
-
-     • **List the nodes present in the cluster**: kubectl get nodes
-
-     • **Grab the name of the control-plane node and describe it**: kubectl describe node master-node
-  4. **Increase the number of nodes in a Kubernetes cluster**:
-
-     • **Get the instance group list from the cluster**: kops get ig --state=s3://<your-s3-bucket>
-
-     • **Edit the node-machine to add the number of instances**: kops edit ig nodes-ap-south-1a --state=s3://<your-s3-bucket>
-  5. **Get events happening in Kubernetes**:
-
-     • **In the default namespace**: kubectl get events
-
-     • **In all namespaces**: kubectl get events --all-namespaces
-
-  6. **Get logs of a pod**: kubectl logs pod-name
-  7. **Get the instance group list of Kubernetes Cluster**: kops get ig --state=s3://<your-s3-bucket>
-  8. **Add/remove an instance in Kubernetes Cluster**: kops edit ig <instance-name> --state=s3://<your-s3-bucket>
+1. **Get CRI details used in nodes**: `kubectl get nodes -o wide`
+2. **List pods (controller, scheduler, api-server) running on control-plane**: `kubectl get pods -n kube-system`
+3. **List the nodes present in the cluster**: `kubectl get nodes`
+4. **Grab the name of the control-plane node and describe it**: `kubectl describe node master-node`
+5. **Get the instance group list from the cluster**: `kops get ig --state=s3://<your-s3-bucket>`
+6. **Edit the node-machine to add the number of instances**: `kops edit ig nodes-ap-south-1a --state=s3://<your-s3-bucket>`
+7. **In the default namespace**: `kubectl get events`
+8. **In all namespaces**: `kubectl get events --all-namespaces`
+9. **Get logs of a pod**: `kubectl logs pod-name`
+10. **Get the instance group list of Kubernetes Cluster**: `kops get ig --state=s3://<your-s3-bucket>`
+11. **Add/remove an instance in Kubernetes Cluster**: `kops edit ig <instance-name> --state=s3://<your-s3-bucket>`
 
 ## Troubleshooting
 If you encounter an error such as: 

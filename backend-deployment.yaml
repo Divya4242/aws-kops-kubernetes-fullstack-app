@@ -1,3 +1,5 @@
+# Here is the deployment file for the backend. I've set up 2 replicas, meaning 2 pods/containers will be created for the backend.
+# In the environment variables, I provided the database connection URL to connect to the MongoDB database.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,3 +23,29 @@ spec:
         - name: DATABASE
           value: "mongodb://root:example@mongodb-0.mongodb.default.svc.cluster.local:27017/Ecommerce?authSource=admin"
 
+#mongodb://root:example@mongodb-0.mongodb.default.svc.cluster.local:27017/Ecommerce?authSource=admin
+
+# 1. **Protocol:** `mongodb://`
+#   - This specifies the protocol to be used, which is MongoDB.
+
+# 2. **Username and Password:** `root:example@`
+#   - `root` is the username.
+#   - `example` is the password.
+#   - These credentials are used to authenticate with the MongoDB server.
+
+# 3. **Host:** `mongodb-0.mongodb.default.svc.cluster.local`
+#   - This is the fully qualified domain name (FQDN) of the MongoDB server.
+#   - `mongodb-0` is the name of the MongoDB pod.
+#   - `mongodb` is the name of the service.
+#   - `default` is the namespace in which the MongoDB service is running.
+#   - `svc.cluster.local` is the cluster domain.
+
+# 4. **Port:** `27017`
+#   - This is the default port number for MongoDB.
+
+# 5. **Database:** `Ecommerce`
+#   - This specifies the database to connect to within the MongoDB server.
+
+# 6. **Options:** `?authSource=admin`
+#   - `authSource=admin` specifies that the authentication should be done against the `admin` database rather than the `Ecommerce` database. 
+#       This is useful if the user's credentials are stored in the `admin` database.

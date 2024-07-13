@@ -1,3 +1,7 @@
+# This is the backend service file that uses a NodePort type of service. A NodePort service reserves a port on the node machine, 
+# allowing us to access the service using the node's IP address and the reserved port. ex: http://<node-public-ip>:port 
+# For simplicity, I chose the NodePort type of service. However, if you prefer to use a ClusterIP type of service, 
+# it will work just as it is currently working.
 apiVersion: v1
 kind: Service
 metadata:

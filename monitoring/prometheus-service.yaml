@@ -1,8 +1,12 @@
+# This is the prometheus service file that uses a NodePort type of service. A NodePort service reserves a port on the node machine,
+# allowing us to access the service using the node's IP address and the reserved port. Ex: http://<node-public-ip>:port 
+# to access prometheus from my brwoser, I chose the NodePort type of service.
+
 apiVersion: v1
 kind: Service
 metadata:
   name: prometheus-service
-  namespace: prometheus
+  namespace: monitoring
 spec:
   selector:
     app: prometheus-server

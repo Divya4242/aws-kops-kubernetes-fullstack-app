@@ -1,7 +1,4 @@
-# Here is the deployment file for the kubestatemetrics. I've set up 1 replica, meaning 1 pod/container will be created for the kube-state-metrics.
-# kube-state-metrics simplifies Kubernetes monitoring by providing detailed, real-time metrics about the state and health of Kubernetes objects. 
-# These metrics are crucial for understanding cluster behavior, diagnosing issues, and ensuring the reliability of applications deployed
-# in Kubernetes environments.
+# Here is the deployment file for the . I've set up 1 replica, meaning 1 pod/container will be created for the grafana.
 
 apiVersion: apps/v1
 kind: Deployment

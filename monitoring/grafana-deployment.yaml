@@ -1,8 +1,10 @@
+# Here is the deployment file for the grafana. I've set up 1 replica, meaning 1 pod/container will be created for the grafana.
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana
-  namespace: prometheus
+  namespace: monitoring
   labels:
     app: grafana
 spec:
@@ -20,14 +22,3 @@ spec:
         image: grafana/grafana:latest  # Use a specific version if preferred
         ports:
         - containerPort: 3000
-        volumeMounts:
-        - name: grafana-storage
-          mountPath: /var/lib/grafana  # Default Grafana storage path
-      securityContext:
-        runAsUser: 472
-        runAsGroup: 472
-        fsGroup: 472
-      volumes:
-      - name: grafana-storage
-        persistentVolumeClaim:
-          claimName: my-pvc

@@ -1,8 +1,12 @@
+# This is the ConfigMap for Alertmanager. Within it, you can see `alertmanager.yml`, which will be bound to the Alertmanager pod. 
+# Before starting Alertmanager, we need to configure it to use this email configuration for sending alerts based on the rules specified in
+# Prometheus. For better readability and understanding, I created a ConfigMap for the Alertmanager pod.
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: alertmanager-config
-  namespace: prometheus
+  namespace: monitoring
 data:
   alertmanager.yml: |
     global:

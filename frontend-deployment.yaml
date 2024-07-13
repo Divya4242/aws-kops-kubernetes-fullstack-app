@@ -1,3 +1,5 @@
+# Here is the deployment file for the frontend. I've set up 2 replicas, meaning 2 pods/containers will be created for the frontend.
+# In the environment variables, I provided the backend connection URL to connect to the nodejs Backend.
 apiVersion: apps/v1
 kind: Deployment
 metadata:

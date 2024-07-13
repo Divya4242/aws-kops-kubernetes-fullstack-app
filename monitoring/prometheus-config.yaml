@@ -1,8 +1,11 @@
+# This is the ConfigMap for Prometheus. Within it, you'll find `prometheus.yml`, which will be bound to the Prometheus pod. 
+# Before starting Prometheus, we need to configure the endpoints from which we want to scrape data. Additionally,
+# there is an `alerting-rules.yml` file responsible for alerting using Alertmanager. For better readability and understanding, I created a ConfigMap for the Prometheus pod.
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-server-conf
-  namespace: prometheus
+  namespace: monitoring
 data:
   prometheus.yml: |
     global:
@@ -11,7 +14,7 @@ data:
     alerting:
       alertmanagers:
         - static_configs:
-            - targets: ['alertmanager.prometheus.svc.cluster.local:9093']
+            - targets: ['alertmanager.monitoring.svc.cluster.local:9093']
     rule_files:
       - /etc/prometheus/alerting-rules.yaml
     scrape_configs:
@@ -26,7 +29,7 @@ data:
         scheme: http
         static_configs:
         - targets:
-          - kube-state-metrics.prometheus.svc.cluster.local:8080
+          - kube-state-metrics.monitoring.svc.cluster.local:8080
 
   alerting-rules.yaml: |
     groups:

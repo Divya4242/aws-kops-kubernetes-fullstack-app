@@ -1,8 +1,11 @@
+# Here is the deployment file for the alertmanager. I've set up 1 replica, meaning 1 pod/container will be created for the alertmanager.
+# In the last you can see i am mouting alertmanger configmap file to alertmanager pod.
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: alertmanager
-  namespace: prometheus
+  namespace: monitoring
   labels:
     app: alertmanager
 spec:

@@ -1,3 +1,8 @@
+# For MongoDB, I created a StatefulSet, which differs from a Deployment. In a StatefulSet, pod/container data persists in a single storage location.
+# We use AWS EBS to store this data. If a pod restarts or fails, it will be recreated using the data stored in EBS, ensuring no data loss. 
+# StatefulSets are primarily designed for databases. In the volume mounts section, you can see that I mount `/data/db` to AWS EBS (gp2). 
+# First, I created a StorageClass, then a VolumeClaim template. You need to apply the StorageClass file (`kind: StorageClass`) 
+# using the `kubectl apply -f` command before applying the MongoDB StatefulSet.
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:

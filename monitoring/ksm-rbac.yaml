@@ -1,3 +1,6 @@
+# Creating a `ClusterRole` and `ClusterRoleBinding` for kube-state-metrics is essential for enabling it to access Kubernetes objects.
+# Without these roles, kube-state-metrics would be unable to fetch metrics from Kubernetes resources.
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -39,4 +42,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: kube-state-metrics
-    namespace: prometheus
+    namespace: monitoring

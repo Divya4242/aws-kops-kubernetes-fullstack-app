@@ -1,8 +1,11 @@
+# Here is the deployment file for the prometheus. I've set up 1 replica, meaning 1 pod/container will be created for the prometheus.
+# In the last you can see i am mouting prometheus configmap file to prometheus pod.
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus-server
-  namespace: prometheus
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
