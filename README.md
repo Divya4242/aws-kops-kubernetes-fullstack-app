@@ -30,7 +30,7 @@ This project demonstrates a Kubernetes setup with a full-stack application consi
 
 ## Getting Started
 
-## Infrastructure Creation
+## Infrastructure Creation 🌱
 **1. Launch an EC2 Instance**
 
   Launch an EC2 instance with the `t2.micro` instance type. You can either create a new instance or use an existing one. Ensure you have SSH access to the instance.
@@ -99,7 +99,7 @@ kops validate cluster --name=k8s-cluster.example.com --state=s3://<your-s3-bucke
 Here is an example of the expected output for the command above. In the image, you'll find that both the control plane and node plane are ready and operational, each identified by its unique ID. Additionally, the image displays subnet details where EC2 instances have been deployed, providing comprehensive information about the network configuration and infrastructure setup.
 
 
-## Application Deployment
+## Application Deployment 🚀
 
 Once the cluster is ready, follow these steps to deploy the application:
 
@@ -186,7 +186,7 @@ Cheers! 🎉 You can now access your deployed website.
 
 Open your browser and navigate to your domain or the appropriate service URL. Your application should be live and accessible.
 
-## Kubernetes Monitoring 🔎 
+## Kubernetes Monitoring 📊
 - **Prometheus**: Collects metrics from the Kubernetes cluster and applications.
 - **Grafana**: Visualizes the metrics collected by Prometheus.
 - **kube-state-metrics**: Exposes cluster-level metrics.
