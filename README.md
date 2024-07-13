@@ -105,7 +105,7 @@ Once the cluster is ready, follow these steps to deploy the application:
 
 * Clone the repository using the following command:
   ```sh
-  git clone https://github.com/Divya4242/k8s-aws-kops-ingress.git
+  git clone https://github.com/Divya4242/aws-kops-kubernetes-fullstack-app.git
   ```
 
 * Apply the application deployment, service and statefulset configuration:
