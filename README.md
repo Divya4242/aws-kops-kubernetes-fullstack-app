@@ -205,30 +205,24 @@ To check Montoring of the application, open Chrome and navigate to the following
     • <ec2-public-ip>:30011 # for the kube-state-metrics
 
 ### 2. Setup Prometheus & Grafana
-![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/9cbd9a78-d244-4dac-9d8a-e483bd78d54a)
 
-1. Ensure all targets in prometheus are up as shown in the image above.
+<img align="right" width="100" height="100" src="https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/9cbd9a78-d244-4dac-9d8a-e483bd78d54a">
 
-![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/eae03bdd-990a-4168-8e19-767797168586)
-
-2. Go to Grafana and add the Prometheus data source:
+* 1. Ensure all targets in Prometheus are up, as shown in the image. In the targets section, you can see there are two endpoints: one for `kube-state-metrics` which collects Kubernetes data, and another for Prometheus metrics. It is crucial to ensure that both targets are operational to maintain accurate and comprehensive monitoring of your Kubernetes cluster. Ensure all targets in prometheus are up as shown in the image.
    
-    • Add the Prometheus server URL in the connection settings as shown in the image above.
+<img align="right" width="100" height="100" src="https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/eae03bdd-990a-4168-8e19-767797168586">
 
-    • Click the "Save & Test" button at the bottom of grafana page.
+* 2. Navigate to Grafana at `http://<ec2-public-ip>:30013` and add the Prometheus server URL in the connection settings as depicted in the image. Make sure to include the Prometheus URL with port number `30010`. After entering the URL, click the "Save & Test" button at the bottom of the Grafana page. Once the test is successful, you will see a message indicating that the connection is successful. This ensures that Grafana is properly linked to Prometheus for monitoring and data visualization.
+ 
+<img align="right" width="100" height="100" src="https://github.com/user-attachments/assets/23422a22-6eed-4e9e-b779-9bd28dfdc33a">
 
-![image](https://github.com/user-attachments/assets/23422a22-6eed-4e9e-b779-9bd28dfdc33a)
-
-
-3. Once the data source is successfully added, import the dashboard:
-
-    • Go to Dashboards -> Import -> Enter the ID 13332 into the Grafana dashboard ID field -> Click on load.
-
+* 3. Once you've successfully added the data source, proceed to Grafana's Dashboards section. Navigate to Import, where you'll enter Dashboard ID `13332` into the designated field. Click 'Load' to import the kube-state-metrics dashboard. This dashboard provides comprehensive visualizations of Kubernetes nodes, pods, deployments, and more, offering valuable insights into your cluster's performance and resource utilization.
+     
 ## Dashboard Photos
 
-![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/e399a45d-746f-4d59-98fc-c8529c1f0b6d)
-
-![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/163203a6-6b38-4f85-9ba0-8b25f3d07962)
+|Kubernetes Cluster|Kubernetes Nodes|
+|:-:|:-:|
+|![Kubernetes Cluster](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/e399a45d-746f-4d59-98fc-c8529c1f0b6d)|![Kubernetes Nodes](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/163203a6-6b38-4f85-9ba0-8b25f3d07962)|
 
 ![image](https://github.com/Divya4242/k8s-AWS-Kops-Ingress/assets/113757574/ac3575b8-58ca-496e-a57e-0c5432890a43)
 
